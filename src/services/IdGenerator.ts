@@ -1,8 +1,7 @@
 import { v4 } from "uuid";
 
-export class IdGenerator{
-
-    generate(): string{
-        return v4();
-    }
+export class IdGenerator {
+  generationId = (): string => {
+    return v4();
+  };
 }

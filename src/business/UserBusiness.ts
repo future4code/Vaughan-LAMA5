@@ -12,70 +12,74 @@ import { Authenticator } from "../services/Authenticator";
 import { IUSerDataBase } from "../model/IUserDataBase";
 
 export class UserBusiness {
-  constructor(
-    private idGenerator: IdGenerator,
-    private autenthicator: Authenticator,
-    private hashPassword: HashManager,
-    private userData: IUSerDataBase
-  ) {}
-  async createUser(user: UserInputDTO) {
-    console.log("chegou aaa");
-    const { name, email, password, role } = user;
+  private idGenerator: IdGenerator;
+  private autenthicator: Authenticator;
+  private hashPassword: HashManager;
+  private userData: IUSerDataBase;
+  constructor(userRepository: IUSerDataBase) {
+    this.userData = userRepository;
+    this.idGenerator = new IdGenerator();
+    this.hashPassword = new HashManager();
+    this.autenthicator = new Authenticator();
+  }
+
+  signup = async (input: UserInputDTO): Promise<string> => {
+    const { name, email, password } = input;
     if (!name || !email || !password) {
       throw new Error(
-        "Verifique se os campos estão sendo passados corretamentes!"
+        "Por favor, preencha os campos 'name', 'email' e 'password' "
       );
     }
-    console.log("antes de vericar email");
-    // const verifyEmailExist = this.userData.getUserByEmail(email);
-    // console.log("2");
-    // if (verifyEmailExist) {
-    //   throw new Error("Usuário já existe");
-    // }
+    if (email.indexOf("@") === -1) {
+      throw new Error(
+        "O email não está com o formato correto, por favor coloque '@'"
+      );
+    }
+    if (password.length < 8) {
+      throw new Error("A senha tem que ter no mínimo 8 caractéres");
+    }
+    const verifyExistUser = await this.userData.getUserByEmail(email);
+    if (verifyExistUser) {
+      throw new Error("Usuário já existe");
+    }
 
-    const id = this.idGenerator.generate();
-    console.log("3");
-    const hashPassword = await this.hashPassword.hash(user.password);
-    console.log("4");
-    // const userDatabase = new UserDatabase();
-    console.log("5");
-    const newUser: UserDataBaseDTO = {
+    const id = this.idGenerator.generationId();
+    const newPassword = this.hashPassword.createHash(password);
+    const user: UserDataBaseDTO = {
       id,
       name,
       email,
-      password: hashPassword,
+      password: newPassword,
       role: "NORMAL"
     };
-    console.log(newUser);
-    await this.userData.createUser(newUser);
+
+    this.userData.createUser(user);
 
     const accessToken = this.autenthicator.generateToken({
       id,
       role: user.role
     });
-
     return accessToken;
-  }
-
+  };
   async getUserByEmail(user: LoginInputDTO) {
-    const userDatabase = new UserDatabase();
-    const userFromDB = await userDatabase.getUserByEmail(user.email);
+    const { email, password } = user;
+    const userFromDB = await this.userData.getUserByEmail(email);
 
-    const hashManager = new HashManager();
-    const hashCompare = await hashManager.compare(
-      user.password,
-      userFromDB.getPassword()
-    );
-
-    const authenticator = new Authenticator();
-    const accessToken = authenticator.generateToken({
-      id: userFromDB.getId(),
-      role: userFromDB.getRole()
-    });
-
-    if (!hashCompare) {
-      throw new Error("Invalid Password!");
+    if (!email || !password) {
+      throw new Error("Por favor verifique os campos 'email' e 'password'");
     }
+    const isPassword = this.hashPassword.compareHash(
+      password,
+      userFromDB.password
+    );
+    if (!userFromDB || !isPassword) {
+      throw new Error("Email ou senha inválidos");
+    }
+
+    const accessToken = this.autenthicator.generateToken({
+      id: userFromDB.id,
+      role: userFromDB.role
+    });
 
     return accessToken;
   }

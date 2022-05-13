@@ -2,57 +2,55 @@ import { Request, Response } from "express";
 import { UserInputDTO, LoginInputDTO } from "../model/User";
 import { UserBusiness } from "../business/UserBusiness";
 import { BaseDatabase } from "../data/BaseDatabase";
-import { IdGenerator } from "../services/IdGenerator";
-import { Authenticator } from "../services/Authenticator";
-import { HashManager } from "../services/HashManager";
-import { UserDatabase } from "../data/UserDatabase";
 
 export class UserController {
   constructor(private userBusiness: UserBusiness) {}
   async signup(req: Request, res: Response): Promise<string> {
     try {
+      const { name, email, password, role } = req.body;
       const input: UserInputDTO = {
-        email: req.body.email,
-        name: req.body.name,
-        password: req.body.password,
-        role: req.body.role
+        email,
+        name,
+        password,
+        role
       };
-      // const id = new IdGenerator();
-      // const autenthicator = new Authenticator();
-      // const hashManager = new HashManager();
-      // const userData = new UserDatabase();
-      // const userBusiness = new UserBusiness(
-      //   id,
-      //   autenthicator,
-      //   hashManager,
-      //   userData
-      // );
-      // console.log(this.userBusiness);
-      await this.userBusiness.createUser(input);
-      const token = await this.userBusiness.createUser(input);
+      const token = await this.userBusiness.signup(input);
 
-      res.status(201).send({ token });
+      res.status(201).send({ message: "Usuário criado com sucesso", token });
       return token;
     } catch (error) {
-      res.status(400).send({ error: error.message });
+      if (error instanceof Error) {
+        res.status(400).send({ message: error.message });
+      } else if (error) {
+        res.status(400).send(error.sqlMessage);
+      } else {
+        res.status(500).send({ message: "Erro ao se conectar com o servidor" });
+      }
     }
 
     await BaseDatabase.destroyConnection();
   }
 
-  // async login(req: Request, res: Response) {
-  //   try {
-  //     const loginData: LoginInputDTO = {
-  //       email: req.body.email,
-  //       password: req.body.password
-  //     };
-  //     const token = await this.userBusiness.getUserByEmail(loginData);
+  async login(req: Request, res: Response) {
+    try {
+      const { email, password } = req.body;
+      const loginData: LoginInputDTO = {
+        email,
+        password
+      };
+      const token = await this.userBusiness.getUserByEmail(loginData);
 
-  //     res.status(200).send({ token });
-  //   } catch (error) {
-  //     res.status(400).send({ error: error.message });
-  //   }
+      res.status(200).send({ token });
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).send({ message: error.message });
+      } else if (error) {
+        res.status(400).send(error.sqlMessage);
+      } else {
+        res.status(500).send({ message: "Erro ao se conectar com o servidor" });
+      }
+    }
 
-  //   await BaseDatabase.destroyConnection();
-  // }
+    await BaseDatabase.destroyConnection();
+  }
 }

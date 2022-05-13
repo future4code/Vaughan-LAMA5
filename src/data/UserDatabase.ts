@@ -15,12 +15,12 @@ export class UserDatabase extends BaseDatabase implements IUSerDataBase {
     }
   }
 
-  public async getUserByEmail(email: string): Promise<User> {
+  public async getUserByEmail(email: string): Promise<UserDataBaseDTO> {
     const result = await this.getConnection()
       .select("*")
       .from(UserDatabase.TABLE_NAME)
       .where({ email });
 
-    return User.toUserModel(result[0]);
+    return result[0];
   }
 }
