@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { BandUserBussines } from "../business/BandBusiness";
-import { BandDTO } from "../model/Band";
+import { Band, BandDTO, DetailBandDTO } from "../model/Band";
 
 export class BandController {
   constructor(private bandUserBusiness: BandUserBussines) {}
@@ -15,6 +15,29 @@ export class BandController {
       };
       await this.bandUserBusiness.createBandBusiness(input, token);
       res.status(201).send({ message: "Banda criado com sucesso!" });
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).send({ message: error.message });
+      } else if (error) {
+        res.status(400).send(error.sqlMessage);
+      } else {
+        res.status(500).send({ message: "Erro ao se conectar com o servidor" });
+      }
+    }
+  };
+
+  getDetailBand = async (req: Request, res: Response): Promise<Band> => {
+    try {
+      const token = req.headers.authorization;
+      const id = req.params.id;
+      // const name = (req.query as unknown) as string;
+      const input: DetailBandDTO = {
+        token,
+        id
+      };
+      const band = await this.bandUserBusiness.returnBand(input);
+      res.status(200).send({ band });
+      return band;
     } catch (error) {
       if (error instanceof Error) {
         res.status(400).send({ message: error.message });

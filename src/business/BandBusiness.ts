@@ -1,5 +1,5 @@
 import { BaseError } from "../error/BaseError";
-import { Band, BandDTO } from "../model/Band";
+import { Band, BandDTO, DetailBandDTO } from "../model/Band";
 import { IBandUserData } from "../model/IBandDataBase";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
@@ -40,5 +40,26 @@ export class BandUserBussines {
     };
 
     await this.bandData.inserBandData(sendBandInfo);
+  };
+
+  returnBand = async (input: DetailBandDTO): Promise<Band> => {
+    const { token, id, name } = input;
+    if (!token) {
+      throw new Error("É preciso passar um token de acesso");
+    }
+    const tokenData = this.authenticator.getData(token);
+    if (!tokenData) {
+      throw new Error("Usuário deslogado");
+    }
+    // Aqui era para retornar uma banda por name
+    // const band = await this.bandData.findBandByName(name);
+    const bandById = await this.bandData.getBandById(id);
+    // if (!band) {
+    //   throw new Error("Essas banda não existe");
+    // }
+    if (!bandById) {
+      throw new Error("Essas banda não existe");
+    }
+    return bandById;
   };
 }

@@ -10,3 +10,10 @@ export type Band = {
   music_genre: string;
   lider: string;
 };
+
+
+export type DetailBandDTO = {
+  token: string;
+  id: string;
+  name?: string;
+};

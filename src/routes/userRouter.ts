@@ -22,6 +22,6 @@ const bandController = new BandController(
 userRouter.post("/signup", (req, res) => userController.signup(req, res));
 userRouter.post("/login", (req, res) => userController.login(req, res));
 
-userRouter.post("/create/band", (req, res) =>
-  bandController.createBand(req, res)
-);
+
+
+// userRouter.get("/:id", (req, res) => bandController.getDetailBand(req, res));

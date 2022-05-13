@@ -15,4 +15,12 @@ export class BandUserData extends BaseDatabase implements IBandUserData {
   async inserBandData(band: Band): Promise<void> {
     await this.getConnection().insert(band).into(BandUserData.TABLE_NAME);
   }
+
+  async getBandById(id: string): Promise<Band> {
+    const resultBand = await this.getConnection()
+      .select("*")
+      .from(BandUserData.TABLE_NAME)
+      .where({ id });
+    return resultBand[0];
+  }
 }
