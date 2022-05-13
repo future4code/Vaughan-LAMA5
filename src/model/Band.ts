@@ -17,3 +17,13 @@ export type DetailBandDTO = {
   id: string;
   name?: string;
 };
+
+export type ShowDTO = {
+  token: string;
+  week_day: string, 
+  start_time: string, 
+  end_time: string, 
+  band_id: string
+};
+
+

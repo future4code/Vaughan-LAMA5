@@ -1,6 +1,9 @@
-import { User, UserDataBaseDTO, UserInputDTO } from "./User";
+import {UserDataBaseDTO} from "./User";
 
-export interface IUSerDataBase {
+
+
+export interface IUSerDataBase{
   createUser(user: UserDataBaseDTO): Promise<void>;
   getUserByEmail(email: string): Promise<UserDataBaseDTO>;
 }
+

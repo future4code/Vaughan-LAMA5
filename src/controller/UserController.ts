@@ -14,6 +14,7 @@ export class UserController {
         password,
         role
       };
+      
       const token = await this.userBusiness.signup(input);
 
       res.status(201).send({ message: "Usuário criado com sucesso", token });

@@ -8,14 +8,14 @@ export class Migrations extends BaseDatabase {
     this.getConnection()
       .raw(
         `
-    CREATE TABLE IF NOT EXISTS BANDAS (
+    CREATE TABLE IF NOT EXISTS lama_band (
         id VARCHAR(255) PRIMARY KEY,
         name VARCHAR(255) UNIQUE NOT NULL,
         music_genre VARCHAR(255) NOT NULL,
         responsible VARCHAR(255) UNIQUE NOT NULL 
       );
 
-      CREATE TABLE IF NOT EXISTS SHOWS (
+      CREATE TABLE IF NOT EXISTS lama_shows (
         id VARCHAR(255) PRIMARY KEY,
         week_day VARCHAR(255) NOT NULL,
         start_time INT NOT NULL,
@@ -23,7 +23,7 @@ export class Migrations extends BaseDatabase {
         band_id VARCHAR(255) NOT NULL,
         FOREIGN KEY(band_id) REFERENCES BANDAS(id)
       );
-      CREATE TABLE IF NOT EXISTS USUÁRIOS (
+      CREATE TABLE IF NOT EXISTS lama_user (
         id VARCHAR(255) PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL UNIQUE,
