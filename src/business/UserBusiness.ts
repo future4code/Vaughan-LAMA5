@@ -2,10 +2,7 @@ import {
   UserInputDTO,
   LoginInputDTO,
   UserDataBaseDTO,
-  UserRole,
-  User
 } from "../model/User";
-import { UserDatabase } from "../data/UserDatabase";
 import { IdGenerator } from "../services/IdGenerator";
 import { HashManager } from "../services/HashManager";
 import { Authenticator } from "../services/Authenticator";
@@ -32,13 +29,16 @@ export class UserBusiness {
     }
     if (email.indexOf("@") === -1) {
       throw new Error(
-        "O email não está com o formato correto, por favor coloque '@'"
+        "Formato de email invalido !"
       );
     }
     if (password.length < 8) {
-      throw new Error("A senha tem que ter no mínimo 8 caractéres");
+      throw new Error("A senha tem que ter no mínimo 8 caracteres");
     }
+    
     const verifyExistUser = await this.userData.getUserByEmail(email);
+
+
     if (verifyExistUser) {
       throw new Error("Usuário já existe");
     }
@@ -61,8 +61,9 @@ export class UserBusiness {
     });
     return accessToken;
   };
-  async getUserByEmail(user: LoginInputDTO) {
+   async getUserByEmail(user: LoginInputDTO) {
     const { email, password } = user;
+    
     const userFromDB = await this.userData.getUserByEmail(email);
 
     if (!email || !password) {
