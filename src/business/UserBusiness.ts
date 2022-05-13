@@ -24,7 +24,7 @@ export class UserBusiness {
   }
 
   signup = async (input: UserInputDTO): Promise<string> => {
-    const { name, email, password } = input;
+    const { name, email, password, role } = input;
     if (!name || !email || !password) {
       throw new Error(
         "Por favor, preencha os campos 'name', 'email' e 'password' "
@@ -50,7 +50,7 @@ export class UserBusiness {
       name,
       email,
       password: newPassword,
-      role: "NORMAL"
+      role
     };
 
     this.userData.createUser(user);

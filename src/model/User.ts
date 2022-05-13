@@ -73,7 +73,7 @@ export interface UserInputDTO {
   email: string;
   password: string;
   name: string;
-  role: string;
+  role?: string;
 }
 
 export interface UserDataBaseDTO extends UserInputDTO {

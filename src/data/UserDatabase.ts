@@ -7,8 +7,6 @@ export class UserDatabase extends BaseDatabase implements IUSerDataBase {
 
   public async createUser(user: UserDataBaseDTO): Promise<void> {
     try {
-      console.log("user bd", user);
-
       await this.getConnection().insert(user).into(UserDatabase.TABLE_NAME);
     } catch (error) {
       throw new Error(error.sqlMessage || error.message);
