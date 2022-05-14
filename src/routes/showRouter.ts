@@ -12,6 +12,7 @@ const authenticator = new Authenticator();
 const showData = new ShowDataBase();
 
 const showBusiness = new ShowBusiness(authenticator, idGeneration, showData);
-const showController = new ShowController(showBusiness)
+const showController = new ShowController(showBusiness);
 
 showRouter.post("/create", (req, res) => showController.createShow(req, res));
+showRouter.get("/:day", (req, res) => showController.getAllShowByday(req, res));
