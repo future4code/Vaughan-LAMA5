@@ -34,12 +34,14 @@ export class ShowDataBase extends BaseDatabase implements IShowData {
 
   async getVerifyAvailableTime(
     week_day: string,
-    start_time: number
+    start_time: number,
+    end_time: number
   ): Promise<boolean> {
     const result = await this.getConnection()
       .from(this.TABLE_SHOW)
       .where("week_day", "=", `${week_day}`)
-      .where("end_time", ">", `${start_time}`);
+      .where("end_time", ">", `${start_time}`)
+      .where("start_time", "<", `${end_time}`);
     console.log(result);
     if (result.length > 0) {
       return true;

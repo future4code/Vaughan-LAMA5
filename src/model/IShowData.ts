@@ -6,6 +6,7 @@ export interface IShowData {
   getShowByDay(day: string): Promise<Show[]>;
   getVerifyAvailableTime(
     week_day: string,
-    start_time: number
+    start_time: number,
+    end_time: number
   ): Promise<boolean>;
 }

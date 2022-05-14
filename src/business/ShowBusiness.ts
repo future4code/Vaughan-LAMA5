@@ -46,7 +46,8 @@ export class ShowBusiness {
 
     const verifyAvailableTime = await this.showData.getVerifyAvailableTime(
       week_day,
-      Number(start_time)
+      Number(start_time),
+      Number(end_time)
     );
     if (verifyAvailableTime) {
       throw new Error("Já existe um show agendado para esse dia e horário");
