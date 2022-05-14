@@ -31,4 +31,20 @@ export class ShowDataBase extends BaseDatabase implements IShowData {
       .orderBy("start_time");
     return result;
   }
+
+  async getVerifyAvailableTime(
+    week_day: string,
+    start_time: number
+  ): Promise<boolean> {
+    const result = await this.getConnection()
+      .from(this.TABLE_SHOW)
+      .where("week_day", "=", `${week_day}`)
+      .where("end_time", ">", `${start_time}`);
+    console.log(result);
+    if (result.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

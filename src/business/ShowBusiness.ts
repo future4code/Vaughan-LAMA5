@@ -12,10 +12,8 @@ export class ShowBusiness {
   ) {}
   createShow = async (input: ShowDTO): Promise<void> => {
     const { week_day, start_time, end_time, band_id, token } = input;
-    console.log(week_day, start_time, end_time, band_id);
 
     if (!week_day || !start_time || !end_time || !band_id) {
-      //   throw new BaseError("Por favor verifique todos os campos", 422);
       throw new Error("Por favor verifique todos os campos");
     }
 
@@ -40,12 +38,19 @@ export class ShowBusiness {
 
     const id = this.idGeneration.generationId();
 
-    const isVerifyShowExist = await this.showData.getBandById(band_id);
+    const isVerifyBandExist = await this.showData.getBandById(band_id);
 
-    if (!isVerifyShowExist) {
+    if (!isVerifyBandExist) {
       throw new Error("Banda não existe !");
     }
 
+    const verifyAvailableTime = await this.showData.getVerifyAvailableTime(
+      week_day,
+      Number(start_time)
+    );
+    if (verifyAvailableTime) {
+      throw new Error("Já existe um show agendado para esse dia e horário");
+    }
     const show: Show = {
       id,
       week_day: roleDay,
