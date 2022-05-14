@@ -58,7 +58,6 @@ export class User {
     }
   }
 
-
   static dayToShowRole(input: string): DayRole {
     switch (input) {
       case "SEXTA":
@@ -104,7 +103,6 @@ export enum UserRole {
   ADMIN = "ADMIN"
 }
 
-
 export enum DayRole {
   SEXTA = "SEXTA",
   SABADO = "SABADO",
@@ -113,9 +111,8 @@ export enum DayRole {
 
 export type Show = {
   id: string;
-  week_day: DayRole,
-  start_time: string, 
-  end_time: string, 
-  band_id: string
+  week_day: DayRole;
+  start_time: string;
+  end_time: string;
+  band_id: string;
 };
-
