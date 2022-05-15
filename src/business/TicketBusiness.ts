@@ -1,5 +1,5 @@
 import { ITicketData } from "../model/ITicketData";
-import { Ticket, TicketDTO } from "../model/Ticket";
+import { buyTicketDTO, Ticket, TicketDTO } from "../model/Ticket";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 
@@ -36,10 +36,47 @@ export class TicketBusiness {
       id_event,
       quantify_total_ticket: quantifyTicket
     };
-    const isVerifyTicket = await this.ticketData.getTicketById(id);
+    const isVerifyTicket = await this.ticketData.getTicketById(id_event);
+
     if (isVerifyTicket) {
       throw new Error("Esse ingresso já existe");
     }
     await this.ticketData.insertTicket(ticket);
   };
+
+  async buyTicket(ticketInput: buyTicketDTO, token: string): Promise<void> {
+    const { name, quantifyTicket } = ticketInput;
+    if (!name || !quantifyTicket) {
+      throw new Error("Verifique todos os campos");
+    }
+    if (!token) {
+      throw new Error("É necessário passar o token de acesso");
+    }
+    if (quantifyTicket < 0) {
+      throw new Error("Quantidade de ingresso não pode ser negativa");
+    }
+    const tokenData = this.authenticator.getData(token);
+    if (!tokenData) {
+      throw new Error("Usuário deslogado");
+    }
+    const isVerifyTicket = await this.ticketData.getTicketByName(name);
+    if (isVerifyTicket) {
+      throw new Error("Esse ingresso não existe");
+    }
+    const verifyQuantifyAvailable = await this.ticketData.ticket(
+      Number(quantifyTicket)
+    );
+    if (verifyQuantifyAvailable.length === 0) {
+      throw new Error("Quantidade nao disponivel");
+    }
+
+    const newQuantify =
+      verifyQuantifyAvailable[0].quantify_total_ticket - quantifyTicket;
+
+    await this.ticketData.ticketSolt(
+      verifyQuantifyAvailable[0].id_ticket,
+      newQuantify,
+      quantifyTicket
+    );
+  }
 }

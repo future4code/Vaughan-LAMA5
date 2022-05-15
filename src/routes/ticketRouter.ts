@@ -19,3 +19,5 @@ const ticketController = new TicketController(ticketBusiness);
 ticketRouter.post("/create", (req, res) =>
   ticketController.createTicket(req, res)
 );
+
+ticketRouter.post("/buy", (req, res) => ticketController.buyTicket(req, res));
