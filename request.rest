@@ -55,7 +55,7 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA3YWE4OWYwLWFiOTEt
 
 POST http://localhost:3000/ticket/create
 Content-Type: application/json
-
+authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNiY2M3MmJjLTI1NzQtNDdjNS1iMzBlLTljYjAyNWJiY2ExOCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1MjU2NTQzOSwiZXhwIjoxNjUyNTY4NDM5fQ.GwwRr-BnoE-U_C729T_DFfp9BNmACfXTF1taqpMfGNU
 {
    "name": "jogo do flamengo", 
    "value": , 

@@ -12,3 +12,7 @@ export type Ticket = {
   id_event: string;
   quantify_total_ticket: number;
 };
+export type buyTicketDTO = {
+  name: string;
+  quantifyTicket: number;
+};
