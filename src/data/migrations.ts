@@ -30,6 +30,23 @@ export class Migrations extends BaseDatabase {
         password VARCHAR(255) NOT NULL,
         role VARCHAR(255) NOT NULL DEFAULT "NORMAL"
       );
+
+      CREATE TABLE IF NOT EXISTS lama_ticket (
+        id_ticket VARCHAR(255) PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        value FLOAT NOT NULL,
+        id_event varchar(255) NOT NULL,
+        quantify_total_ticket float NOT NULL,
+        quantify_total_solt int NOT NULL DEFAULT 0,
+        FOREIGN KEY(id_event) REFERENCES lama_shows(id)
+      );
+      
+      CREATE TABLE IF NOT EXISTS lama_photo (
+        id VARCHAR(255) PRIMARY KEY,
+        url TEXT(1023) NOT NULL,
+        id_event varchar(255) NOT NULL,
+        FOREIGN KEY(id_event) REFERENCES lama_shows(id)
+      );
     `
       )
       .then(() => {
