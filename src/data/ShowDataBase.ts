@@ -49,4 +49,12 @@ export class ShowDataBase extends BaseDatabase implements IShowData {
       return false;
     }
   }
+
+  async verifyExistShow(id: string): Promise<boolean> {
+    const [result] = await this.getConnection()
+      .from(this.TABLE_SHOW)
+      .where({ id });
+    console.log(result);
+    return result;
+  }
 }
