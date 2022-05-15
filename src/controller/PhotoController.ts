@@ -24,4 +24,20 @@ export class PhotoController {
       }
     }
   }
+  async getAllPhotoByEvent(req: Request, res: Response): Promise<void> {
+    try {
+      const token = req.headers.authorization;
+      const idEvent = req.params.idEvent;
+      const photo = await this.photoBusiness.getAllPhotoByEvent(idEvent, token);
+      res.status(200).send({ photo });
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).send({ message: error.message });
+      } else if (error) {
+        res.status(400).send({ message: error.sqlMessage });
+      } else {
+        res.status(500).send({ message: "Erro ao se conectar no servidor" });
+      }
+    }
+  }
 }

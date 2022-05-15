@@ -42,7 +42,7 @@ export class ShowDataBase extends BaseDatabase implements IShowData {
       .where("week_day", "=", `${week_day}`)
       .where("end_time", ">", `${start_time}`)
       .where("start_time", "<", `${end_time}`);
-    console.log(result);
+
     if (result.length > 0) {
       return true;
     } else {
@@ -54,7 +54,7 @@ export class ShowDataBase extends BaseDatabase implements IShowData {
     const [result] = await this.getConnection()
       .from(this.TABLE_SHOW)
       .where({ id });
-    console.log(result);
+
     return result;
   }
 }
