@@ -49,3 +49,16 @@ authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA3YWE4OWYwLWFiOTEt
     "end_time": "11", 
     "band_id":"3d0d85b6-16f8-4965-bb4c-68b13bc40773"
 }
+
+###
+
+
+POST http://localhost:3000/ticket/create
+Content-Type: application/json
+
+{
+   "name": "jogo do flamengo", 
+   "value": , 
+   "idEvent": "1", 
+   "quantifyTicket":100
+}
