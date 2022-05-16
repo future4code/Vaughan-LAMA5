@@ -1,6 +1,10 @@
 # Labenu Music Awards
 
-Projeto tem como objetivo simular um gerenciamento de um evento
+📓 Sobre
+
+🚀 Projeto backend desenvolvido conforme proposta do bootcamp ministrado pela Labenu. 🚀
+
+O LAMA, *Labenu Musical Awards*, é um festival com vários shows de bandas famosas para a formatura da turma Vaughan, onde é possível eleger a banda que o público mais gostou! Este projeto é um sistema que permite o gerenciamento completo desses shows.
 
 ### ✔ O que funciona:
 - Se Cadastrar
@@ -16,8 +20,6 @@ Projeto tem como objetivo simular um gerenciamento de um evento
 
 ## ⛏️ Em desenvolvimento
 - Teste unitários usando jest
-
-
 
 ## 🛠 Tecnologias
 
@@ -35,8 +37,6 @@ Para este projeto eu usei as seguintes tecnologias:
 - Paradigma de orientação a objetos
 - Arquitetura em camadas
 
-
-
 ## 📃 Documentação
 
 [Documentação](https://documenter.getpostman.com/view/19296508/UyxjG6Cn)
@@ -45,6 +45,7 @@ Para este projeto eu usei as seguintes tecnologias:
 ### 👩‍💻👨‍ Projeto desenvolvido por:
 
 - [@Vitorduarte0](https://github.com/Vitorduarte0)
+
 - [@MaiaJrDev](https://github.com/MaiaJrDev)
 
 
