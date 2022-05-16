@@ -6,7 +6,7 @@
 
 O LAMA, *Labenu Musical Awards*, é um festival com vários shows de bandas famosas para a formatura da turma Vaughan, onde é possível eleger a banda que o público mais gostou! Este projeto é um sistema que permite o gerenciamento completo desses shows.
 
-### ✔ O que funciona:
+## ✔ O que funciona:
 - Se Cadastrar
 - Fazer login
 - Criar uma banda
@@ -42,7 +42,7 @@ Para este projeto eu usei as seguintes tecnologias:
 [Documentação](https://documenter.getpostman.com/view/19296508/UyxjG6Cn)
 
 
-# 👩‍💻👨‍ Projeto desenvolvido por:
+##  👩‍💻👨‍ Projeto desenvolvido por:
 
 - [@Vitorduarte0](https://github.com/Vitorduarte0)
 - [@MaiaJrDev](https://github.com/MaiaJrDev)
