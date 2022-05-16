@@ -45,7 +45,6 @@ Para este projeto eu usei as seguintes tecnologias:
 ### 👩‍💻👨‍ Projeto desenvolvido por:
 
 - [@Vitorduarte0](https://github.com/Vitorduarte0)
-
 - [@MaiaJrDev](https://github.com/MaiaJrDev)
 
 
