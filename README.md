@@ -9,9 +9,7 @@ Projeto tem como objetivo simular um gerenciamento de um evento
 - Retornar uma banda por id
 - Criar um show
 - Retornar todos os show de um dia
-- Curtir uma publicação
 - Criar um ingresso de um show
-- Comprar ingreso de um show
 - Comprar ingreso de um show
 - Adicionar fotos de um determinado show
 - Retornar todas as fotos de um determinado show
