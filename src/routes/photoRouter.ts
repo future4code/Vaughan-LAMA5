@@ -14,3 +14,6 @@ const photoBusiness = new PhotoBusiness(
 );
 const photoController = new PhotoController(photoBusiness);
 photoRouter.post("/add", (req, res) => photoController.addPhoto(req, res));
+photoRouter.get("/:idEvent", (req, res) =>
+  photoController.getAllPhotoByEvent(req, res)
+);

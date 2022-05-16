@@ -36,4 +36,24 @@ export class PhotoBusiness {
     };
     await this.photoData.insertPhoto(photo);
   }
+
+  async getAllPhotoByEvent(idEvent: string, token: string): Promise<Photo[]> {
+    if (!idEvent) {
+      throw new Error("É necessário passar o id do evento!");
+    }
+    if (!token) {
+      throw new Error("É necessário passar o token de acesso!");
+    }
+
+    const tokenData = this.authentication.getData(token);
+    if (!tokenData) {
+      throw new Error("Usuário deslogado");
+    }
+    const photos = await this.photoData.getPhoto(idEvent);
+    if (photos.length === 0) {
+      throw new Error("Sem fotos");
+    }
+    
+    return photos;
+  }
 }
