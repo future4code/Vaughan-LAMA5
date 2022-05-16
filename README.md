@@ -42,7 +42,7 @@ Para este projeto eu usei as seguintes tecnologias:
 [Documentação](https://documenter.getpostman.com/view/19296508/UyxjG6Cn)
 
 
-### 👩‍💻👨‍ Projeto desenvolvido por:
+# 👩‍💻👨‍ Projeto desenvolvido por:
 
 - [@Vitorduarte0](https://github.com/Vitorduarte0)
 - [@MaiaJrDev](https://github.com/MaiaJrDev)
