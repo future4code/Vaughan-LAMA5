@@ -58,6 +58,19 @@ export class User {
     }
   }
 
+  static dayToShowRole(input: string): DayRole {
+    switch (input) {
+      case "SEXTA":
+        return DayRole.SEXTA;
+      case "SABADO":
+        return DayRole.SABADO;
+      case "DOMINGO":
+        return DayRole.DOMINGO;
+      default:
+        throw new Error("Dia inválido, deve ser SEXTA, SABADO ou DOMINGO");
+    }
+  }
+
   static toUserModel(user: any): User {
     return new User(
       user.id,
@@ -89,3 +102,17 @@ export enum UserRole {
   NORMAL = "NORMAL",
   ADMIN = "ADMIN"
 }
+
+export enum DayRole {
+  SEXTA = "SEXTA",
+  SABADO = "SABADO",
+  DOMINGO = "DOMINGO"
+}
+
+export type Show = {
+  id: string;
+  week_day: DayRole;
+  start_time: string;
+  end_time: string;
+  band_id: string;
+};

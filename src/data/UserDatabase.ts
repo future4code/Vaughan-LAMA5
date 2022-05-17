@@ -3,6 +3,7 @@ import { User, UserDataBaseDTO } from "../model/User";
 import { IUSerDataBase } from "../model/IUserDataBase";
 
 export class UserDatabase extends BaseDatabase implements IUSerDataBase {
+  
   private static TABLE_NAME = "lama_user";
 
   public async createUser(user: UserDataBaseDTO): Promise<void> {

@@ -13,4 +13,5 @@ const bandController = new BandController(
   new BandUserBussines(authenticator, idGeneration, bandData)
 );
 bandRouter.post("/create", (req, res) => bandController.createBand(req, res));
-bandRouter.get("/:id", (req, res) => bandController.getDetailBand(req, res));
+bandRouter.get("/:idOrName", (req, res) => bandController.getDetailBand(req, res));
+

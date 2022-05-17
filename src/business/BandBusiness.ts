@@ -1,4 +1,3 @@
-import { BaseError } from "../error/BaseError";
 import { Band, BandDTO, DetailBandDTO } from "../model/Band";
 import { IBandUserData } from "../model/IBandDataBase";
 import { Authenticator } from "../services/Authenticator";
@@ -52,14 +51,15 @@ export class BandUserBussines {
       throw new Error("Usuário deslogado");
     }
     // Aqui era para retornar uma banda por name
-    // const band = await this.bandData.findBandByName(name);
+
+    const band = await this.bandData.findBandByName(name);
+
     const bandById = await this.bandData.getBandById(id);
-    // if (!band) {
-    //   throw new Error("Essas banda não existe");
-    // }
-    if (!bandById) {
-      throw new Error("Essas banda não existe");
+
+    if (!bandById && !band) {
+      throw new Error("Essa banda não existe");
     }
-    return bandById;
+
+    return bandById || band;
   };
 }

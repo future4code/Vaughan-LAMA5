@@ -1,4 +1,50 @@
 # Labenu Music Awards
-Como você deve saber muito bem, o nosso querido chefinho Astrodev é uma pessoa com Networking incrível e ele conhece vários artistas estrelados. Além disso, ele também é um grande ~~megalomaníaco~~ visionário e está planejando fazer um grande evento: o **LAMA**, *Labenu Musical Awards*, um festival  com várias bandas famosas para a formatura da sua turma e, no final, vocês podem eleger a banda que mais gostaram! Entretanto, na opinião dele, vocês só serão merecedores se entregarem um sistema impecável que permita o gerenciamento completo desses shows.
 
-Para isso já deixamos algumas tabelas prontas para vocês não precisarem se preocupar com a modelagem do banco. Deixamos também um template do projeto já com a estrutura da parte de usuários. Vocês podem usá-las a vontade, mas, se quiser fazer do zero sem esse auxílio, também pode.
+# 📓 Sobre
+
+🚀 Projeto backend desenvolvido conforme proposta do bootcamp ministrado pela Labenu. 🚀
+
+O LAMA, *Labenu Musical Awards*, é um festival com vários shows de bandas famosas para a formatura da turma Vaughan, onde é possível eleger a banda que o público mais gostou! Este projeto é um sistema que permite o gerenciamento completo desses shows.
+
+## ✔ O que funciona:
+- Se Cadastrar
+- Fazer login
+- Criar uma banda
+- Retornar uma banda por id
+- Criar um show
+- Retornar todos os show de um dia
+- Criar um ingresso de um show
+- Comprar ingreso de um show
+- Adicionar fotos de um determinado show
+- Retornar todas as fotos de um determinado show
+
+## ⛏️ Em desenvolvimento
+- Teste unitários usando jest
+
+## 🛠 Tecnologias
+
+Para este projeto eu usei as seguintes tecnologias:
+
+- NodeJs
+- Typescript
+- Express
+- Mysql
+- Knex
+- UUID
+- Bcryptjs
+- Jsonwebtoken
+- Postman
+- Paradigma de orientação a objetos
+- Arquitetura em camadas
+
+## 📃 Documentação
+
+[Documentação](https://documenter.getpostman.com/view/19296508/UyxjG6Cn)
+
+
+##  👩‍💻👨‍ Projeto desenvolvido por:
+
+- [@Vitorduarte0](https://github.com/Vitorduarte0)
+- [@MaiaJrDev](https://github.com/MaiaJrDev)
+
+

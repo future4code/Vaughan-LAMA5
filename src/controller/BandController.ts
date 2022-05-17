@@ -14,7 +14,7 @@ export class BandController {
         lider
       };
       await this.bandUserBusiness.createBandBusiness(input, token);
-      res.status(201).send({ message: "Banda criado com sucesso!" });
+      res.status(201).send({ message: "Banda criada com sucesso!" });
     } catch (error) {
       if (error instanceof Error) {
         res.status(400).send({ message: error.message });
@@ -29,11 +29,15 @@ export class BandController {
   getDetailBand = async (req: Request, res: Response): Promise<Band> => {
     try {
       const token = req.headers.authorization;
-      const id = req.params.id;
-      // const name = (req.query as unknown) as string;
+
+      const id = req.params.idOrName;
+
+      const name = req.params.idOrName
+
       const input: DetailBandDTO = {
         token,
-        id
+        id,
+        name
       };
       const band = await this.bandUserBusiness.returnBand(input);
       res.status(200).send({ band });
