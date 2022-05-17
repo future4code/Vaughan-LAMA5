@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { TicketBusiness } from "../business/ticketBusiness";
+import { TicketBusiness } from "../business/TicketBusiness";
 import { buyTicketDTO, Ticket, TicketDTO } from "../model/Ticket";
 
 export class TicketController {

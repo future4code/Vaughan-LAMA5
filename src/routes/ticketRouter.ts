@@ -1,7 +1,7 @@
 import express from "express";
-import { TicketBusiness } from "../business/ticketBusiness";
-import { TicketController } from "../controller/ticketController";
-import { TicketDataBase } from "../data/ticketDataBase";
+import { TicketBusiness } from "../business/TicketBusiness";
+import { TicketController } from "../controller/TicketController";
+import { TicketDataBase } from "../data/TicketDataBase";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
 
